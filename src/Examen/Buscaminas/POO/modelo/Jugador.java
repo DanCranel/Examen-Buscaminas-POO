@@ -2,10 +2,9 @@ package Examen.Buscaminas.POO.modelo;
 
 import java.io.Serializable;
 
-/**
- * Clase Jugador
- * Representa al jugador: ejemplo de clase simple en POO.
- */
+	// Clase Jugador
+	// Representa al jugador: ejemplo de clase simple en POO.
+
 public class Jugador implements Serializable {
 
     private static final long serialVersionUID = 1L;

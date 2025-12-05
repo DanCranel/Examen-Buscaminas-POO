@@ -3,8 +3,6 @@ package Examen.Buscaminas.POO.modelo;
 import java.io.Serializable;
 import java.util.Random;
 
-
-
 public class Tablero implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -65,7 +63,8 @@ public class Tablero implements Serializable {
             }
         }
     }
+
     public boolean coordenadaValida(int fila, int columna) {
-        return fila >= 0 && fila < filas && columna >= 0 && columna < columnas;
-    }
+        return fila >= 0 && fila < filas && columna >= 0 && columna < columnas;
+    }
 }
