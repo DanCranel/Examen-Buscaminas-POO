@@ -47,8 +47,8 @@ public class Casilla implements Serializable {
 		return minasAlrededor;
 	}
 	
-	public void incrementarMinasAlrededor() {
-		this minasAlrededor++;
-	}
+	   public void incrementarMinasAlrededor() {
+	        this.minasAlrededor++;
+	    }
 
 }
