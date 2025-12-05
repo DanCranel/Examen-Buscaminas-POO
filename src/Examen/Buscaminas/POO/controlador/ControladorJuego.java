@@ -29,7 +29,7 @@ public class ControladorJuego {
     }
 
     // Método principal que muestra el menú y controla el flujo general del programa.
-  
+   
     public void iniciar() {
         vista.mostrarPortada();
         String nombre = vista.pedirNombreJugador();
@@ -60,9 +60,8 @@ public class ControladorJuego {
         vista.mostrarMensaje("Gracias por jugar. ¡Hasta pronto!");
     }
 
- 
- // Bucle principal de juego: mientras no termine, lee jugadas y las procesa.
- 
+    //  Bucle principal de juego: mientras no termine, lee jugadas y las procesa.
+     
     private void jugar() {
         while (!juego.isTerminado()) {
             vista.mostrarTablero(juego);
@@ -97,8 +96,7 @@ public class ControladorJuego {
         }
     }
 
-
-     // Interpreta la jugada escrita por el usuario.
+    // Interpreta la jugada escrita por el usuario.
      // Ejemplo: "A5 D" → fila=0, columna=4, acción=DESCUBRIR
      
     private void procesarEntrada(String entrada) throws EntradaInvalidaException,
@@ -148,7 +146,7 @@ public class ControladorJuego {
     }
 
     // Llama al GestorArchivos para guardar la partida actual.
-
+     
     private void guardarPartida() {
         String ruta = vista.pedirRutaArchivoGuardar();
         try {
@@ -160,7 +158,7 @@ public class ControladorJuego {
     }
 
     // Llama al GestorArchivos para cargar una partida desde archivo.
-
+    
     private void cargarPartida() {
         String ruta = vista.pedirRutaArchivoCargar();
         try {

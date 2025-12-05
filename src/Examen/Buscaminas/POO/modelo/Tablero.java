@@ -68,3 +68,4 @@ public class Tablero implements Serializable {
     public boolean coordenadaValida(int fila, int columna) {
         return fila >= 0 && fila < filas && columna >= 0 && columna < columnas;
     }
+}
