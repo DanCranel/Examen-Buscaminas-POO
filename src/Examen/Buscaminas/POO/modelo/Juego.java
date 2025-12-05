@@ -2,8 +2,9 @@ package Examen.Buscaminas.POO.modelo;
 
 import java.io.Serializable;
 
-import Examen.Buscaminas.POO.exepciones.CasillaYaDescubiertaException;
-import Examen.Buscaminas.POO.exepciones.CoordenadaFueraDeRangoException;
+import Examen.Buscaminas.POO.excepciones.CasillaYaDescubiertaException;
+import Examen.Buscaminas.POO.excepciones.CoordenadaFueraDeRangoException;
+
 
 /**
  * Clase Juego

@@ -3,6 +3,8 @@ package Examen.Buscaminas.POO.modelo;
 import java.io.Serializable;
 import java.util.Random;
 
+import Examen.Buscaminas.POO.excepciones.CasillaYaDescubiertaException;
+
 public class Tablero implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,5 +68,81 @@ public class Tablero implements Serializable {
 
     public boolean coordenadaValida(int fila, int columna) {
         return fila >= 0 && fila < filas && columna >= 0 && columna < columnas;
+    }
+
+   
+     // Descubre una casilla. Devuelve true si pisó una mina.
+    
+    public boolean descubrir(int fila, int columna) throws CasillaYaDescubiertaException {
+        if (!coordenadaValida(fila, columna)) {
+            return false;
+        }
+
+        Casilla casilla = casillas[fila][columna];
+
+        if (casilla.isDescubierta()) {
+            throw new CasillaYaDescubiertaException("La casilla ya fue descubierta.");
+        }
+
+        casilla.setDescubierta(true);
+
+        if (casilla.tieneMina()) {
+            // pisó una mina
+            return true;
+        }
+
+        casillasSinMinaPorDescubrir--;
+
+        // Si no hay minas alrededor, descubrimos en cascada
+        if (casilla.getMinasAlrededor() == 0) {
+            descubrirCascada(fila, columna);
+        }
+
+        return false;
+    }
+
+    private void descubrirCascada(int fila, int columna) {
+        for (int df = -1; df <= 1; df++) {
+            for (int dc = -1; dc <= 1; dc++) {
+                int nf = fila + df;
+                int nc = columna + dc;
+                if (coordenadaValida(nf, nc) && !(df == 0 && dc == 0)) {
+                    Casilla vecina = casillas[nf][nc];
+                    if (!vecina.isDescubierta() && !vecina.tieneMina()) {
+                        vecina.setDescubierta(true);
+                        casillasSinMinaPorDescubrir--;
+                        if (vecina.getMinasAlrededor() == 0) {
+                            descubrirCascada(nf, nc);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void marcar(int fila, int columna) {
+        if (!coordenadaValida(fila, columna)) {
+            return;
+        }
+        Casilla casilla = casillas[fila][columna];
+        if (!casilla.isDescubierta()) {
+            casilla.setMarcada(!casilla.isMarcada());
+        }
+    }
+
+    public boolean haGanado() {
+        return casillasSinMinaPorDescubrir == 0;
+    }
+
+    public Casilla[][] getCasillas() {
+        return casillas;
+    }
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
     }
 }
